@@ -1,0 +1,37 @@
+{
+  "name": "flip-quote",
+  "title": "jQuery Flip-Quote",
+  "description": "jQuery Flip-Quote, create a pull-quote that flips on scroll.",
+  "keywords": [
+  	"url",
+		"preview",
+		"jquery",
+		"facebook",
+		"snippet"
+  ],
+  "version": "1.0.0",
+  "author": {
+    "name": "Mark Serbol",
+    "url": "https://github.com/markserbol"
+  },
+  "maintainers": [
+    {
+      "name": "Mark Serbol",
+      "url": "https://github.com/markserbol"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "bugs": "https://github.com/markserbol/flip-quote/issues",
+  "homepage": "https://github.com/markserbol/flip-quote",
+  "docs": "https://github.com/markserbol/flip-quote",
+  "demo": "http://markserbol.github.io/flip-quote/",
+  "download": "https://github.com/markserbol/flip-quote/archive/master.zip",
+  "dependencies": {
+    "jquery": ">=1.6"
+  }
+}
