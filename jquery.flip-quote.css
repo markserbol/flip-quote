@@ -1,0 +1,79 @@
+/*
+ * jquery.flip-quote.css, jQuery Flip-Quote
+ *
+ * View the plugin repository at:
+ * https://github.com/markserbol/flip-quote
+ *
+ */
+
+.fQ_container {
+	position:relative;
+	cursor:pointer;
+	-moz-perspective: 800px;
+	-webkit-perspective: 800px;
+	perspective: 800px;
+	font-size:24px;
+	font-family:'Segoe UI', 'Segoe', 'Open Sans', sans-serif;
+}
+
+.fQ_container div {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:auto;
+	text-align:center;
+	background:#0080C0;
+	color:#FFF;
+	
+	-moz-backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	
+	-moz-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	
+	/*-moz-transition:0.8s;
+	-webkit-transition: 0.8s;
+	transition: 0.8s;*/
+	
+	-moz-animation: pulse 2s infinite;
+	-webkit-animation: pulse 2s infinite;
+}
+
+.fQ_front {
+	opacity:0;
+	z-index:2;
+	-moz-transform:rotateX(180deg);
+	-webkit-transform:rotateX(180deg);
+	transform:rotateX(180deg);
+}
+
+.fQ_back {
+	z-index:3;
+	height:100%;
+}
+
+.fQ_container.fQ_flip .fQ_front {
+	opacity:1;
+	-moz-transform:rotateX(0deg);
+	-webkit-transform:rotateX(0deg);
+	transform:rotateX(0deg);
+}
+
+.fQ_container.fQ_flip .fQ_back {
+	opacity:0;
+	-moz-transform:rotateX(-180deg);
+	-webkit-transform:rotateX(-180deg);
+	transform:rotateX(-180deg);
+}
+
+.fQ_quote {
+	background-color:transparent;
+	-moz-transition:background-color 0.8s ease-in-out, color 0.4s ease-in-out;
+	-webkit-transition:background-color 0.8s ease-in-out, color 0.4s ease-in-out;
+	-o-transition:background-color 0.8s ease-in-out, color 0.4s ease-in-out;
+	transition:background-color 0.8s ease-in-out, color 0.4s ease-in-out;
+}
+
