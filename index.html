@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Flip-Quote by Mark Serbol</title>
+
+<meta name="viewport" content="initial-scale=1">
+<meta name="description" content="jQuery Flip-Quote, create a pull-quote that flips on scroll" />
+<meta name="author" content="Mark Serbol" />
+<meta name="designer" content="Mark Serbol" />
+<meta property="og:title" content="jQuery Flip-Quote — create a pull-quote that flips on scroll" />
+<meta property="og:description" content="jQuery Flip-Quote creates a pull-quote from a text quote found in the document and flips to reveal the quote once it's scrolled into view." />
+<meta property="og:image" content="http://i.imgur.com/GGUWZIl.png" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://markserbol.github.io/flip-quote/" />
+<meta property="og:site_name" content="Flip-Quote by Mark Serbol" />
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+
+<style>
+	* {
+		margin:0;
+		padding:0;
+		font-family:'Segoe UI', 'Segoe', 'Open Sans', sans-serif;
+	}
+	
+	a {
+		text-decoration:none;
+		color:inherit;
+	}
+	
+	table, th, tr, td {
+		border-collapse:collapse;
+		border:1px solid #CCC;
+		font-weight:normal;
+	}
+	
+	th {
+		color:green;
+		font-size:18px;
+	}
+	
+	td {
+		padding:8px;
+		text-align:center;
+	}
+	
+	td:nth-child(1) {
+		width:100px;
+	}
+	
+	td:nth-child(2) {
+		width:100px;
+	}
+	
+	td:nth-child(3) {
+		width:100px;
+	}
+	
+	td:nth-child(4) {
+		text-align:left;
+	}
+	
+	.container {
+		width:280px;
+	}
+	
+	#q1 {
+		float:left;
+		margin-right:10px;
+	}
+	
+	#q2 {
+		width:400px;
+		float:right;
+		margin-left:10px;
+	}
+	
+	#q3 {
+		width:500px;
+	}
+	
+	.contents {
+		width:750px;
+		margin:20px auto;	
+	}
+	
+	header {
+		height:300px;
+		background:#E7E7E7;
+		background:url(demo_files/cubes.png);
+		position:relative;
+		z-index:2;
+	}
+	
+	header .contents {
+		margin:0 auto;
+		height:100%;
+		color:#FFF;
+		
+	}
+	
+	header .contents > * {
+		float:left;
+	}
+	
+	#title {
+		width:400px;
+		height:;
+		margin-top:20px;
+		text-align:right;
+		color:#0080C0;
+		font-weight:bold;
+	}
+	
+	#title span {
+		color:#008080;
+		color:#0080C0;
+		/*text-shadow: 6px 5px 0 rgba(50,58,69,0.6)*/;
+		font-size:60px;
+		text-transform:uppercase;
+		
+	}
+	
+	#title .fQ_container {
+		height:130px;
+		
+	}
+	
+	#title .fQ_container div {
+		font-size:60px;
+		padding:20px 0;
+		
+	}
+	
+	#title .fQ_container.fQ_flip div {
+		-moz-transition:0.8s;
+		-webkit-transition: 0.8s;
+		transition: 0.8s;
+	}
+	
+	#title p:hover {
+		color:#00A8A8;
+	}
+	
+	header nav {
+		height:100%;
+		margin-left:20px;
+		width:320px;
+	}
+	
+	header nav ul {
+		list-style:none;
+		margin-top:50px;
+	}
+	
+	header nav li {
+		display:block;
+		height:40px;
+		line-height:40px;
+		background:#00A8A8;
+		background:none;
+		color:#00A8A8;
+		width:300px;
+		margin:10px;
+		text-align:left;
+		font-size:20px;
+		
+		text-transform:uppercase;
+	}
+	
+	header nav li a:hover {
+		color:#0080C0;
+	}
+	
+	#main {
+		font-size:18px;
+		box-shadow: 0 0 8px 1px rgba(10,10,10,0.3);
+		padding:10px 0;
+		position:relative;
+		z-index:3;
+	}
+	
+	#main p {
+		margin:10px 0;
+	}
+	
+	#main a {
+		color:green;
+	}
+	
+	#main a:hover {
+		text-decoration:underline;
+	}
+	
+	.contents h3 {
+		font-size:25px;
+		color:green;
+		border-bottom:1px solid green;
+	}
+	
+	.contents h4 {
+		font-size:22px;
+		color:green;
+		font-weight:normal;
+	}
+		
+	footer {
+		background:url(demo_files/cubes.png);
+		position:relative;
+		z-index:2;
+		height:200px;
+	}
+	
+	footer p {
+		color:#00A8A8;
+		text-align:center;
+		padding-top:80px;
+	}
+			
+	pre, code {
+		font-family: monospace, serif;
+		font-size: 1em;
+		font-family: Consolas, Menlo, monospace;
+		font-size: 14px;
+		background: #333;
+		color: white;
+	}
+	
+	pre {
+		white-space: pre-wrap;
+		margin-top: 0;
+		margin-bottom: 1.0em;
+		padding: 0.8em;
+		border-radius: 5px;
+		
+	}
+	
+	code {
+		padding: 0.2em 0.3em;
+		line-height: 1.2;
+		border-radius: 3px;
+	}
+	
+	code * {
+		font-family: Consolas, Menlo, monospace;
+	}
+	
+	pre code {
+		padding: 0;
+		line-height: 1.5;
+		background: none;
+	}
+	
+	a code {
+		background: #A2C;
+		color: white;
+	}
+	
+	a:hover code {
+		color: white;
+		background: #D26;
+	}
+	
+	code .string, code .tag .value { color: #00B93D; }
+	
+	code .number, code .cp, code .literal { color: #38F; } 
+	
+	code .keyword { color: #F73; }
+	
+	code .kd, code .attribute { color: #DC8; } 
+	
+	code .title { color: #9CF; }
+	
+	code .params { color: #98D; }
+	
+	code .p  { color: #EDB; } 
+	
+	code .o  { color: #F63; }  
+	 
+	code .nb { color: #AA97AC;} 
+	
+	code .comment { color: #999; font-style: italic; }
+	
+	code .tag { color: #2DBBFF; }
+	
+	code .id { color: #ABC; } 
+	
+	code .class { color: #A63; }
+	  
+	code .rules { color: #FED; }
+	
+	code .m  { color: #DE8E50; } 
+	
+	code .nd { color: #9FAD7E; }
+	 
+	code .hexcolor { color: #F63; }
+	
+	code .at_rule { color: #088; }
+</style>
+<link rel="stylesheet" href="demo_files/fontello-cb74aae3/css/flip-quote-icon-fonts.css"/>
+<link rel="stylesheet" href="jquery.flip-quote.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="jquery.flip-quote.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="contents">
+    <div id="title">
+      <span>jQuery</span> 
+      
+      <div class="fQ_container">
+        <div class="fQ_front">
+          <q>Flip-Quote</q>
+        </div>
+        <div class="fQ_back">
+          <q>Flip-Quote</q>
+        </div>  
+      </div>
+      <p><a href="http://twitter.com/intent/user?screen_name=mark_serbol">by MARK SERBOL</a></p> 
+    </div>
+    <nav>	
+      <ul>
+        <li><a href="#usage"><i class="icon-code"></i> Usage</a></li>
+        <li><a href="#demo"><i class="icon-eye"></i> Demo</a></li>
+        <li><a href="https://github.com/markserbol/flip-quote"><i class="icon-github"></i> Download on Github</a></li>
+      </ul>
+    </nav>
+    </div>
+  </header>
+	<div id="main">
+    
+  	<section id="usage" class="contents">
+    	<h3>USAGE</h3>
+    	<p>jQuery Flip-Quote creates a <strong>pull-quote</strong> from a text quote found in the document and <em>flips</em> to reveal the quote once it's scrolled into view. It also has a click feature that scrolls into and highlights the quote origin on the document.</p>
+      
+      <p>The idea comes from THE VERGE's article <a href="http://www.theverge.com/2014/1/21/5307992/inside-the-mind-of-a-fanboy">"Fanboys"</a>. In which I think is a good fun way to show pull-quotes that bolds well on a modern flat UI website.</p> 
+      
+      <p>The plugin optimizes <em>CSS 3D transform</em> and other <em>CSS3 properties</em> to give it a 3D depth and perspective. This has been tested on all modern browsers, for IE and older browsers the plugin also has a fallback support.</p>
+      
+      <h4>Getting Started</h4>
+      <p>Include the latest version of jQuery together with  <code class="js">jquery.flip-quote.css</code>  and  <code class="js">jquery.flip-quote.js</code> in your document's <em>head</em>.</p>
+      
+      <pre><code class="html"><span class="tag">&lt;<span class="title">link</span> <span class="attribute">href</span>=<span class="value">"jquery.flip-quote.css"</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span>/&gt;</span><span class="javascript"></span></code>
+<code class="html"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code>
+<code class="html"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"jquery.flip-quote.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre>
+      
+      <p>HTML Structure:</p>
+      <pre><code class="html"><span class="tag">&lt;<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span class="tag">&lt;<span class="title">q</span> <span class="attribute">id</span>=<span class="value">"quote"</span>&gt;</span>Maecenas rhoncus sapien massa, aliquam ornare justo tristique vitae<span class="tag">&lt;/<span class="title">q</span>&gt;</span>. Duis sollicitudin nulla a leo sagittis, tristique imperdiet turpis sollicitudin.<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+  
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre>
+      
+      <p>Apply jQuery Flip-Quote by calling <code class="js">flipQuote</code>:</p>     
+      <pre><code class="js">$(<span class="string">'#quote'</span>).flipQuote({
+  container: <span class="string">'#container'</span>
+});</code></pre>
+      
+      <h4>Multiple Flip-Quote on one call</h4>
+      
+      <p>The above instance is good for one flip-quote only. If you want to create flip-quote for each quote element you need to structure your markup and call instance like this.</p>
+      
+			<pre><code class="html"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"main"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span class="tag">&lt;<span class="title">q</span>&gt;</span>Maecenas rhoncus sapien massa, aliquam ornare justo tristique vitae<span class="tag">&lt;/<span class="title">q</span>&gt;</span>. Duis sollicitudin nulla a leo sagittis, tristique imperdiet turpis sollicitudin.<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+  <span class="tag">&lt;<span class="title">p</span>&gt;</span>Donec sit amet pretium lectus. Nam justo eros, condimentum nec mi ut, sagittis porttitor risus. Vestibulum lectus dolor, mollis nec malesuada id, facilisis eu odio. Aenean porta eu nibh a varius. Pellentesque eget nisl sem. <span class="tag">&lt;<span class="title">q</span>&gt;</span>Nunc luctus pellentesque sapien ac consectetur<span class="tag">&lt;/<span class="title">q</span>&gt;</span>. Quisque vel commodo sapien. Cras mollis rutrum lorem eu dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre>
+
+		<p>jQuery:</p>
+    <pre><code class="js">$(<span class="string">'#main'</span>).flipQuote({
+  quoteSelector: <span class="string">'q'</span>,
+  container: <span class="string">'.container'</span>
+});</code></pre>
+
+		<h4>Options</h4>
+    <p>Here is the list of <strong>options</strong> that you can set and pass on a <code class="js">flipQuote</code> instance.</p>
+    
+      <table width="100%%" border="0">
+  <tr>
+    <th scope="col">Option</th>
+    <th scope="col">Type</th>
+    <th scope="col">Default</th>
+    <th scope="col">Definition</th>
+  </tr>
+  <tr>
+    <td><code class="js">quoteSelector</code></td>
+    <td><code><span class="string">String</span></code></td>
+    <td><code><span class="string">'q'</span></code></td>
+    <td><code><span class="comment">the element that contains the original quote</span></code></td>
+  </tr>
+  <tr>
+    <td><code class="js">container</code></td>
+    <td><code><span class="string">String</span></code></td>
+    <td><code><span class="string">'.container'</span></code></td>
+    <td><code><span class="comment">the element that will contain the flip-quote</span></code></td>
+  </tr>
+  <tr>
+    <td><code class="js">quoteMarks</code></td>
+    <td><code><span class="string">String</span></code></td>
+    <td><code><span class="string">'"“" "”"'</span></code></td>
+    <td>
+    	<pre><code><span class="comment">set flip-quote's <span class="attribute">quotes</span> property to determine how the browser should render quotation marks. You can also pass HTML Entity value or a CSS Escape ('\22'). For single quote you should escape the single string and pass it like this: . <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/quotes"> See detailed docs from MDN</a></span></code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td><code class="js">bgColor</code></td>
+    <td><code><span class="string">String</span></code></td>
+    <td><code><span class="string">'#0080C0'</span></code></td>
+    <td><code><span class="comment">set flip-quote's <span class="attribute">background-color</span> property</span></code></td>
+  </tr>
+  <tr>
+    <td><code class="js">fontColor</code></td>
+    <td><code><span class="string">String</span></code></td>
+    <td><code><span class="string">'#FFF'</span></code></td>
+    <td><code><span class="comment">set flip-quote's <span class="attribute">color</span> property</span></code></td>
+  </tr>
+  <tr>
+    <td><code class="js">fontSize</code></td>
+    <td><code><span class="string">String</span></code></td>
+    <td><code><span class="string">'24px'</span></code></td>
+    <td><code><span class="comment">set flip-quote's <span class="attribute">font-size</span> property</span></code></td>
+  </tr>
+  <tr>
+    <td><code class="js">flipDuration</code></td>
+    <td><code><span class="string">String</span></code></td>
+    <td><code><span class="string">'0.7s'</span></code></td>
+    <td><pre><code><span class="comment">set flip-quote's <span class="attribute">transition-duration</span> property</span></code></pre></td>
+  </tr>
+  <tr>
+    <td><code class="js">pads</code></td>
+    <td><code><span class="number">Number</span></code></td>
+    <td><code><span class="number">20</span></code></td>
+    <td><pre><code><span class="comment">set flip-quote's <span class="attribute">padding</span> property for all sides</span></code></pre></td>
+  </tr>
+</table>
+
+
+    </section>
+  
+  
+  	<section id="demo" class="contents">
+    <h3>DEMO</h3>
+    <p>SCROLL BELOW AND CLICK A FLIP-QUOTE</p>
+    
+  	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rhoncus sapien massa, aliquam ornare justo tristique vitae. Duis sollicitudin nulla a leo sagittis, tristique imperdiet turpis sollicitudin. Donec tempor pretium semper. Pellentesque vulputate tortor non velit aliquam molestie. Pellentesque justo risus, ornare non elit nec, vulputate tristique libero. Suspendisse cursus aliquam ligula ac varius. Cras molestie tellus a erat tempus, non ultrices ligula hendrerit. Etiam in erat sed nisl consequat euismod.</p>
+    <p>Donec sit amet pretium lectus. Nam justo eros, condimentum nec mi ut, sagittis porttitor risus. Vestibulum lectus dolor, mollis nec malesuada id, facilisis eu odio. Aenean porta eu nibh a varius. Pellentesque eget nisl sem. Nunc luctus pellentesque sapien ac consectetur. Quisque vel commodo sapien. Cras mollis rutrum lorem eu dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pulvinar quis purus tincidunt imperdiet. Suspendisse potenti. Integer adipiscing felis vel lectus porttitor dictum. Proin tincidunt, ligula sed iaculis ultricies, libero sapien varius lacus, nec ornare quam leo in quam. Nullam vitae lacinia massa. Quisque vel est rhoncus, dignissim mi quis, convallis sem. Nulla sit amet enim blandit dui faucibus accumsan eget non massa.</p>
+    <div id="q1" class="container"></div> 
+    <p>Proin convallis, est tristique suscipit pretium, erat est mollis nunc, sed pretium lorem lacus id orci. Etiam sit amet tincidunt elit. Suspendisse pellentesque porta commodo. Etiam dapibus tincidunt arcu, et accumsan massa venenatis eget. <q>Vestibulum sit amet eleifend nibh</q>. Praesent non laoreet dui. Mauris suscipit tincidunt aliquet. Quisque eu lacinia metus, ut tristique nisl. Cras bibendum hendrerit dui sit amet lacinia.</p>
+    <p>Mauris eu lacus lacinia, laoreet tellus vitae, pretium libero. Nulla non bibendum diam. Nulla in velit at tortor ornare convallis quis ut diam. Proin sodales tempus tellus, sed semper dui vehicula eget. Sed et aliquam nulla, et interdum quam. Curabitur sagittis eget velit a sollicitudin. Vestibulum eget sagittis nisi, in laoreet ipsum. Proin hendrerit rhoncus euismod. Curabitur congue, leo at lobortis vulputate, metus sem adipiscing velit, a tempor neque dui sed nulla. Quisque lobortis sapien et sapien molestie, at aliquam magna mollis. Quisque aliquam tellus eu consequat ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas quam ac nisi tincidunt tempus. Nunc sagittis, ligula vel vehicula dapibus, arcu sem commodo quam, sed auctor turpis tellus eget purus.</p>
+    <div id="q2" class="container"></div>
+    <p>Curabitur pharetra euismod lorem, nec sollicitudin nisi tempus in. Nulla libero ligula, feugiat non blandit nec, sagittis at elit. Proin ut varius libero. Nunc porta sem nulla, aliquet sollicitudin dolor ornare sed. Aliquam erat volutpat. <q>Nullam nunc nisi, rhoncus in hendrerit nec, fermentum molestie urna</q>. Nam laoreet nibh purus, ut sagittis eros porta vitae. Morbi luctus justo sit amet elit mollis hendrerit. Ut condimentum est vitae justo tincidunt, ut molestie lectus pulvinar. Nunc orci eros, sagittis consectetur tincidunt sollicitudin, pretium eu nisl.</p>
+    </section>
+    <section class="contents">
+    <p>Nulla consectetur ut diam vel semper. Etiam ultrices eros id massa feugiat euismod. <q id="q3target">Fusce ut nibh fringilla, aliquet nunc et, lobortis augue</q>. In lacinia nulla quis velit mattis condimentum. Vivamus tempor quam sed augue mollis placerat at non sem. Aenean ac neque iaculis, vulputate purus id, commodo leo. Proin posuere elit justo, nec imperdiet quam adipiscing et. Sed vulputate, justo sit amet suscipit suscipit, velit nisl semper augue, ac ornare turpis libero ut tellus. Aenean ullamcorper vulputate nisl vitae rhoncus. Donec metus nunc, imperdiet quis erat eget, ultricies imperdiet eros. Nunc sapien turpis, vestibulum non lectus non, aliquet aliquet sapien. Nullam ornare luctus enim ac cursus.</p>
+    
+    <div id="q3"></div>
+    </section>
+    
+    <section id="others" class="contents">
+    	<h3>Dependencies</h3>
+      <p>jQuery 1.6 or Higher</p>
+      
+      <h3>License</h3>
+      <p><strong>jQuery Flip-Quote</strong> is under <strong>MIT License</strong> (<a href="http://www.opensource.org/licenses/MIT">http://www.opensource.org/licenses/MIT</a>). You are free to use this plugin in any project (even commercial ones) as long as the copyright header is left intact.</p>
+       
+    </section>
+		
+  </div>
+  
+  <footer>
+  	<p>Copyright (c) 2014 Mark Serbol</p>
+    
+  </footer>
+  
+  <script>
+		$(document).ready(function(e) {
+				
+			setInterval(function(){
+				$('header .fQ_container').toggleClass('fQ_flip');
+			},2000);
+      
+			$('#demo').flipQuote({bgColor:'#008A00'});
+			
+			$('#q3target').flipQuote({container:'#q3'});
+			
+			$('#title p a').hover(function(){
+				$(this).html('<i class="icon-twitter"></i> MARK SERBOL')	
+			},function(){
+				$(this).html('by MARK SERBOL')		
+			});
+						
+    });
+	</script>
+</body>
+</html>
