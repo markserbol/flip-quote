@@ -1,7 +1,7 @@
 # jQuery Flip-Quote
 jQuery Flip-Quote creates a **pull-quote** from a text quote found in the document and *flips* to reveal the quote once it's scrolled into view. It also has a click feature that scrolls into and highlights the quote origin on the document.
 
-[![jQuery Flip-Quote](http://i.imgur.com/GGUWZIl.png "jQuery Flip-Quote")](https://github.com/markserbol/urlive)
+[![jQuery Flip-Quote](http://i.imgur.com/GGUWZIl.png "jQuery Flip-Quote")](https://github.com/markserbol/flip-quote)
 
 ## Demo
 [View the Demo Page](http://markserbol.github.io/flip-quote/)
@@ -36,7 +36,7 @@ $('#quote').flipQuote({
 To learn more go to this page : [http://markserbol.github.io/flip-quote/](http://markserbol.github.io/flip-quote/)
 
 ## Compatibility
-Tested on all modern browsers – Chrome, Firefox, Safari.
+Tested on all modern browsers ï¿½ Chrome, Firefox, Safari.
 Fallback provided for IE and older browsers.
 
 
