@@ -1,5 +1,5 @@
 /*
- * jquery.flip-quote.js v1.0.0, jQuery Flip-Quote
+ * jquery.flip-quote.js v1.0.1, jQuery Flip-Quote
  *
  * Copyright 2014 Mark Serbol.   
  * Use, reproduction, distribution, and modification of this code is subject to the terms and 
@@ -43,8 +43,8 @@
 				
 				container.addClass('fQ_container').css({'font-size': opts.fontSize});
 				
-				frontFace = $('<div/>', {class: 'fQ_front', html:'<q>'+ text +'</q>'});
-				backFace = $('<div/>', {class: 'fQ_back'});
+				frontFace = $('<div/>', {'class': 'fQ_front', html:'<q>'+ text +'</q>'});
+				backFace = $('<div/>', {'class': 'fQ_back'});
 				
 				frontFace.add(backFace).appendTo(container)
 					.css({
